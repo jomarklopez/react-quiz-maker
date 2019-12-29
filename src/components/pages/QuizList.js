@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const QuizList = () => {
     return (
@@ -7,7 +8,7 @@ const QuizList = () => {
                 <i class="dont icon"></i>
                 No quiz have been added yet
             </div>
-            <div class="ui primary button">Add Quiz</div>
+            <Link to="/createquiz" className="ui primary button">Create Quiz</Link>
         </div>
     )
 };
