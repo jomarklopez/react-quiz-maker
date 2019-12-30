@@ -23,8 +23,7 @@ const questions = (state = initState, action) => {
                     }
                 ]
             }];
-
-        // Adding options to the question by adding a new      option object with the optionId property matched       with the questionId
+        // Adding option to the question by adding a new      option object with the optionId property matched       with the questionId
         case ADD_OPTION:
             return state.map((question, index) => {
                 if (index === action.questionId) {
@@ -37,7 +36,7 @@ const questions = (state = initState, action) => {
                 }
                 return question;
             });
-        // 
+        // Removing an option by slicing two times, one slice would contain the first half except the chosen optionId, the other slice would contain the second half except the chosen optionId. 
         case REMOVE_OPTION:
             return state.map((question, index) => {
                 if (index === action.questionId) {
