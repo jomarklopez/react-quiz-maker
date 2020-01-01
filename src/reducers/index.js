@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import questions from './questions';
+import authReducer from './authReducer';
+import createQuizReducer from './questionFormReducer';
 
 export default combineReducers({
     form: formReducer,
-    questions
+    auth: authReducer,
+    questions: createQuizReducer
 });

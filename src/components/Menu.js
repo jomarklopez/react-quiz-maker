@@ -1,15 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Menu = () => {
-    return (
-        <div className="ui inverted blue menu">
-            <div className="ui container">
-                <Link to="/" className="header item">Quiz Generator</Link>
-                <Link to="/" className="item">Home</Link>
-                <Link to="/quizlist" className="item">Quiz List</Link>
+
+import AuthMenu from './AuthMenu';
+
+class Menu extends React.Component {
+
+    render() {
+        return (
+            <div className="ui inverted menu" >
+                <div className="ui container">
+                    <Link to="/" className="header item">Quiz Generator</Link>
+                    <Link to="/quizlist" className="item">Quiz List</Link>
+                    <AuthMenu />
+                </div>
             </div>
-        </div>
-    )
-};
+        );
+    }
+}
 
 export default Menu;

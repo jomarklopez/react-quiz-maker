@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class LoginForm extends React.Component {
 
     onSubmit = (formValues) => {
-        console.log(formValues);
+        this.props.onSubmit(formValues);
     }
 
     renderInput({ input, placeholder, type, icon }) {

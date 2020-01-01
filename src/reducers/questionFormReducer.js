@@ -11,7 +11,7 @@ const initState = [
     }
 ];
 
-const questions = (state = initState, action) => {
+export default (state = initState, action) => {
     switch (action.type) {
         // Adding questions to the quiz
         case ADD_QUESTION:
@@ -52,5 +52,3 @@ const questions = (state = initState, action) => {
             return state;
     }
 };
-
-export default questions;
