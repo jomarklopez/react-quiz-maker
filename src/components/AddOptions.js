@@ -10,16 +10,10 @@ class AddOptions extends React.Component {
         this[`question-${this.props.questionId}-option-${this.props.options.length - 2}`].focus()
     }
 
-    onDeleteOptionClick(questionId, optionNumber) {
-        this.props.removeOption(questionId, optionNumber);
-
-    }
-
     renderOption({ input, placeholder, optionNumber, meta: { touched, error } }) {
-        const className = `ui action field input ${error && touched ? 'error' : ''}`;
+        const className = `ui field input ${error && touched ? 'error' : ''}`;
         return (
-            <div className={className}>
-
+            <div className={className} style={{ minWidth: "25vw" }}>
                 <input
                     {...input}
                     ref={input => this[`question-${this.props.questionId}-option-${optionNumber}`] = input}
@@ -31,9 +25,6 @@ class AddOptions extends React.Component {
                     }
                     }
                 />
-                <button type="button" className="ui red right icon button" onClick={() => this.onDeleteOptionClick(this.props.questionId, optionNumber)}>
-                    <i className="close icon"></i>
-                </button>
             </div>
         )
     }

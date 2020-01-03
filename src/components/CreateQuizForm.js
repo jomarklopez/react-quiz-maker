@@ -2,6 +2,7 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 
+import StackedCards from './StackedCards';
 import AddOptions from './AddOptions';
 import { addQuestion } from '../actions';
 
@@ -17,7 +18,7 @@ class CreateQuizForm extends React.Component {
         const className = `field ${touched && error ? 'error' : ''}`
         return (
             <div className={className}>
-                <input {...input} placeholder={placeholder} />
+                <input {...input} placeholder={placeholder} size="10" />
             </div>
         )
     }
@@ -29,7 +30,8 @@ class CreateQuizForm extends React.Component {
                 <div className="ui label">
                     {label}
                 </div>
-                <input {...input} type="text" placeholder={placeholder} />
+                <input {...input} placeholder={placeholder}
+                />
                 <button type="button" className="ui green right icon button" onClick={() => console.log('Check name clicked')}>
                     <i className="check icon"></i>
                 </button>
@@ -37,10 +39,10 @@ class CreateQuizForm extends React.Component {
         );
     }
 
-    renderQuestionsList() {
+    renderQuestionForm() {
         return this.props.questions.map(question => {
             return (
-                <div className="item" key={question.questionId}>
+                <div className="content" key={question.questionId}>
                     <label>{`Question ${question.questionId + 1}:`}</label>
                     <Field
                         name={`question-${question.questionId}`}
@@ -67,14 +69,20 @@ class CreateQuizForm extends React.Component {
                     />
                 </form>
                 <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} autoComplete="off">
-                    <div className="ui list">
-                        {this.renderQuestionsList()}
+                    {/* Form Card */}
+                    <div className="ui card container fluid" >
+                        {/*  Stack of Card Questions */}
+                        <StackedCards content={this.renderQuestionForm()} />
+                        <div className="extra content">
+                            <div className="ui two buttons">
+                                <button className="ui button teal" onClick={() => this.props.addQuestion()
+                                }>Add Another Question</button>
+                                <button className="ui button primary right floated" style={{ float: "right" }}>Submit</button>
+                            </div>
+                        </div>
                     </div>
-                    <button className="ui button teal" onClick={() => this.props.addQuestion()
-                    }>Add Another Question</button>
-                    <button className="ui button primary" style={{ float: "right" }}>Submit</button>
-                </form>
 
+                </form>
             </div>
         );
     }
