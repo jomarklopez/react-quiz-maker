@@ -39,19 +39,21 @@ class CreateQuizForm extends React.Component {
         );
     }
 
-    renderQuestionForm() {
+    renderQuestionList() {
         return this.props.questions.map(question => {
             return (
-                <div className="content" key={question.questionId}>
-                    <label>{`Question ${question.questionId + 1}:`}</label>
-                    <Field
-                        name={`question-${question.questionId}`}
-                        component={this.renderQuestionInput}
-                        placeholder="Enter your question."
-                        questionNumber={question.questionId}
-                        validate={[required]}
-                    />
-                    <AddOptions questionId={question.questionId} />
+                <div className="ui card centered card-item" key={question.questionId}>
+                    <div className="content">
+                        <label>{`Question ${question.questionId + 1}:`}</label>
+                        <Field
+                            name={`question-${question.questionId}`}
+                            component={this.renderQuestionInput}
+                            placeholder="Enter your question."
+                            questionNumber={question.questionId}
+                            validate={[required]}
+                        />
+                        <AddOptions questionId={question.questionId} />
+                    </div>
                 </div>
             )
         })
@@ -71,8 +73,10 @@ class CreateQuizForm extends React.Component {
                 <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} autoComplete="off">
                     {/* Form Card */}
                     <div className="ui card container fluid" >
-                        {/*  Stack of Card Questions */}
-                        <StackedCards content={this.renderQuestionForm()} />
+                        {/*  Each card under stacked cards will be the child of stacked cards*/}
+                        <StackedCards>
+                            {this.renderQuestionList()}
+                        </StackedCards>
                         <div className="extra content">
                             <div className="ui two buttons">
                                 <button className="ui button teal" onClick={() => this.props.addQuestion()
