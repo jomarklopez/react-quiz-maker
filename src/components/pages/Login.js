@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { signInUser } from '../../actions';
-import LoginForm from '../LoginForm';
+import LoginForm from '../authentication/LoginForm';
 
 
 class Login extends React.Component {

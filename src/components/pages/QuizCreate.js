@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateQuizForm from '../CreateQuizForm';
+import CreateQuizForm from '../quizForm/CreateQuizForm';
 
 const QuizCreate = () => {
     return (

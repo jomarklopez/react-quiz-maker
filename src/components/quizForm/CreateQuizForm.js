@@ -2,9 +2,10 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 
-import StackedCards from './StackedCards';
 import AddOptions from './AddOptions';
-import { addQuestion } from '../actions';
+import AddQuestions from './AddQuestions';
+import { addQuestion } from '../../actions';
+import StackedCards from '../StackedCards';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 
@@ -12,15 +13,6 @@ class CreateQuizForm extends React.Component {
 
     onSubmit(formValues) {
         console.log(formValues);
-    }
-
-    renderQuestionInput({ input, placeholder, meta: { touched, error } }) {
-        const className = `field ${touched && error ? 'error' : ''}`
-        return (
-            <div className={className}>
-                <input {...input} placeholder={placeholder} size="10" />
-            </div>
-        )
     }
 
     renderLabeledInput({ input, label, placeholder, meta: { touched, error } }) {
@@ -44,14 +36,7 @@ class CreateQuizForm extends React.Component {
             return (
                 <div className="ui card centered card-item" key={question.questionId}>
                     <div className="content">
-                        <label>{`Question ${question.questionId + 1}:`}</label>
-                        <Field
-                            name={`question-${question.questionId}`}
-                            component={this.renderQuestionInput}
-                            placeholder="Enter your question."
-                            questionNumber={question.questionId}
-                            validate={[required]}
-                        />
+                        <AddQuestions questionId={question.questionId} />
                         <AddOptions questionId={question.questionId} />
                     </div>
                 </div>

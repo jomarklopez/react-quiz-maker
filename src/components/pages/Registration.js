@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { createUser } from '../../actions';
-import RegistrationForm from '../RegistrationForm';
+import RegistrationForm from '../authentication/RegistrationForm';
 
 class Registration extends React.Component {
 

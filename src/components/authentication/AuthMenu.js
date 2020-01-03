@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { signOutUser, getUserProfile } from '../actions';
+import { signOutUser, getUserProfile } from '../../actions';
 
 class AuthMenu extends React.Component {
 

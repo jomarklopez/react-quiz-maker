@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AuthMenu from './AuthMenu';
+import AuthMenu from './authentication/AuthMenu';
 
 class Menu extends React.Component {
 

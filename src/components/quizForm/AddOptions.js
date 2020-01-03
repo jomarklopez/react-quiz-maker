@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'redux-form';
 
 import { connect } from 'react-redux';
-import { addOption, removeOption } from '../actions';
+import { addOption, removeOption } from '../../actions';
 
 class AddOptions extends React.Component {
 
@@ -11,9 +11,9 @@ class AddOptions extends React.Component {
     }
 
     renderOption({ input, placeholder, optionNumber, meta: { touched, error } }) {
-        const className = `ui field input ${error && touched ? 'error' : ''}`;
+        // const className = `ui field input ${error && touched ? 'error' : ''}`; For optional error handling
         return (
-            <div className={className} style={{ minWidth: "25vw" }}>
+            <div className="ui field input" >
                 <input
                     {...input}
                     ref={input => this[`question-${this.props.questionId}-option-${optionNumber}`] = input}
