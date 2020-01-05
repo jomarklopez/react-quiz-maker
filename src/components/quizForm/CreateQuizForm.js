@@ -34,7 +34,7 @@ class CreateQuizForm extends React.Component {
     renderQuestionList() {
         return this.props.questions.map(question => {
             return (
-                <div className="ui card centered card-item" key={question.questionId}>
+                <div className="ui card card-item" key={question.questionId}>
                     <div className="content">
                         <AddQuestions questionId={question.questionId} />
                         <AddOptions questionId={question.questionId} />
@@ -46,16 +46,16 @@ class CreateQuizForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <form className="ui form segment" onSubmit={console.log('Submit pressed')} autoComplete="off">
-                    <Field
-                        name="quizName"
-                        component={this.renderLabeledInput} label="Quiz: "
-                        placeholder="Put your quiz name here"
-                        validate={[required]}
-                    />
-                </form>
+            <>
                 <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} autoComplete="off">
+                    <div className="ui form segment">
+                        <Field
+                            name="quizName"
+                            component={this.renderLabeledInput} label="Quiz: "
+                            placeholder="Put your quiz name here"
+                            validate={[required]}
+                        />
+                    </div>
                     {/* Form Card */}
                     <div className="ui card container fluid" >
                         {/*  Each card under stacked cards will be the child of stacked cards*/}
@@ -64,15 +64,14 @@ class CreateQuizForm extends React.Component {
                         </StackedCards>
                         <div className="extra content">
                             <div className="ui two buttons">
-                                <button className="ui button teal" onClick={() => this.props.addQuestion()
+                                <button type="button" className="ui button teal" onClick={() => this.props.addQuestion()
                                 }>Add Another Question</button>
-                                <button className="ui button primary right floated" style={{ float: "right" }}>Submit</button>
+                                <button type="submit" className="ui button primary right floated" style={{ float: "right" }}>Submit</button>
                             </div>
                         </div>
                     </div>
-
                 </form>
-            </div>
+            </>
         );
     }
 }

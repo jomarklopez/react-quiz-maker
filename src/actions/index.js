@@ -48,21 +48,6 @@ export const getUserProfile = () => async dispatch => {
 
 let nextQuestionId = 1;
 
-export const addOption = questionId => {
-    return {
-        type: ADD_OPTION,
-        questionId
-    }
-};
-
-export const removeOption = (questionId, optionNumber) => {
-    return {
-        type: REMOVE_OPTION,
-        optionId: optionNumber,
-        questionId
-    }
-};
-
 export const addQuestion = () => {
     return {
         type: ADD_QUESTION,

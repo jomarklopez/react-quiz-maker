@@ -1,14 +1,8 @@
 import React from 'react';
 import { Field } from 'redux-form';
-
 import { connect } from 'react-redux';
-import { addOption, removeOption } from '../../actions';
 
 class AddOptions extends React.Component {
-
-    componentDidUpdate() {
-        this[`question-${this.props.questionId}-option-${this.props.options.length - 2}`].focus()
-    }
 
     renderOption({ input, placeholder, optionNumber, meta: { touched, error } }) {
         // const className = `ui field input ${error && touched ? 'error' : ''}`; For optional error handling
@@ -18,40 +12,54 @@ class AddOptions extends React.Component {
                     {...input}
                     ref={input => this[`question-${this.props.questionId}-option-${optionNumber}`] = input}
                     placeholder={placeholder}
-                    onClick={() => {
-                        if (optionNumber === this.props.options.length - 1) {
-                            this.props.addOption(this.props.questionId);
-                        }
-                    }
-                    }
                 />
             </div>
         )
     }
 
-    renderOptionsList() {
-        return this.props.options.map((_, index) => {
-            return (
-                <div className="item" key={index}>
-                    <Field
-                        name={`question-${this.props.questionId}-option-${index}`}
-                        component={this.renderOption.bind(this)}
-                        placeholder="Enter your option."
-                        optionNumber={index}
-                        validate={[value => (value || typeof value === 'number' || ((index === this.props.options.length - 1) && this.props.options.length > 1) ? undefined : 'Required')]}
-                    />
-                </div>
-            )
-        })
-    }
-
     render() {
         return (
-            <div className="ui list">
+            <>
                 <label>Options:</label>
-                {this.renderOptionsList()}
-
-            </div>
+                <div className="ui internally celled grid">
+                    <div className="row">
+                        <div class="eight wide column">
+                            <Field
+                                name={`question-${this.props.questionId}-option-0`}
+                                component={this.renderOption.bind(this)}
+                                placeholder="Enter your option."
+                                optionNumber="0"
+                            />
+                        </div>
+                        <div class="eight wide column">
+                            <Field
+                                name={`question-${this.props.questionId}-option-1`}
+                                component={this.renderOption.bind(this)}
+                                placeholder="Enter your option."
+                                optionNumber="1"
+                            />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div class="eight wide column">
+                            <Field
+                                name={`question-${this.props.questionId}-option-2`}
+                                component={this.renderOption.bind(this)}
+                                placeholder="Enter your option."
+                                optionNumber="2"
+                            />
+                        </div>
+                        <div class="eight wide column">
+                            <Field
+                                name={`question-${this.props.questionId}-option-3`}
+                                component={this.renderOption.bind(this)}
+                                placeholder="Enter your option."
+                                optionNumber="3"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </>
         );
     }
 }
@@ -60,4 +68,4 @@ const mapStateToProps = (state, ownProps) => {
     return { options: state.questions[ownProps.questionId].options }
 };
 
-export default connect(mapStateToProps, { addOption, removeOption })(AddOptions);
+export default connect(mapStateToProps, {})(AddOptions);

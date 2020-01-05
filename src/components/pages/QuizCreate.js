@@ -3,9 +3,9 @@ import CreateQuizForm from '../quizForm/CreateQuizForm';
 
 const QuizCreate = () => {
     return (
-        <div>
+        <>
             <CreateQuizForm />
-        </div>
+        </>
     )
 };
 
