@@ -3,9 +3,7 @@ import {
     SIGN_IN,
     SIGN_OUT,
     ADD_QUESTION,
-    REMOVE_QUESTION,
-    ADD_OPTION,
-    REMOVE_OPTION
+    REMOVE_QUESTION
 } from '../actions/types';
 import history from '../history';
 import quizzes from '../api/quizzes';

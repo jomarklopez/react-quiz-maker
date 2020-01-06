@@ -7,10 +7,10 @@ class AddOptions extends React.Component {
     renderOption({ input, placeholder, optionNumber, meta: { touched, error } }) {
         // const className = `ui field input ${error && touched ? 'error' : ''}`; For optional error handling
         return (
-            <div className="ui field input" >
+            <div className="field" >
                 <input
                     {...input}
-                    ref={input => this[`question-${this.props.questionId}-option-${optionNumber}`] = input}
+                    autoComplete="off"
                     placeholder={placeholder}
                 />
             </div>
@@ -23,7 +23,7 @@ class AddOptions extends React.Component {
                 <label>Options:</label>
                 <div className="ui internally celled grid">
                     <div className="row">
-                        <div class="eight wide column">
+                        <div className="eight wide column">
                             <Field
                                 name={`question-${this.props.questionId}-option-0`}
                                 component={this.renderOption.bind(this)}
@@ -31,7 +31,7 @@ class AddOptions extends React.Component {
                                 optionNumber="0"
                             />
                         </div>
-                        <div class="eight wide column">
+                        <div className="eight wide column">
                             <Field
                                 name={`question-${this.props.questionId}-option-1`}
                                 component={this.renderOption.bind(this)}
@@ -41,7 +41,7 @@ class AddOptions extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div class="eight wide column">
+                        <div className="eight wide column">
                             <Field
                                 name={`question-${this.props.questionId}-option-2`}
                                 component={this.renderOption.bind(this)}
@@ -49,7 +49,7 @@ class AddOptions extends React.Component {
                                 optionNumber="2"
                             />
                         </div>
-                        <div class="eight wide column">
+                        <div className="eight wide column">
                             <Field
                                 name={`question-${this.props.questionId}-option-3`}
                                 component={this.renderOption.bind(this)}

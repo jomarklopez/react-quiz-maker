@@ -9,7 +9,7 @@ const required = value => (value || typeof value === 'number' ? undefined : 'Req
 class AddQuestions extends React.Component {
 
     componentDidUpdate() {
-        //this[`question-${this.props.questionId}-option-${this.props.options.length - 2}`].focus()
+        this[`question-${this.props.questionId}`].focus()
     }
 
     renderQuestionInput({ input, placeholder, meta: { touched, error } }) {
@@ -17,6 +17,8 @@ class AddQuestions extends React.Component {
         return (
             <div className="field">
                 <input {...input}
+                    autoComplete="off"
+                    ref={input => this[`question-${this.props.questionId}`] = input}
                     placeholder={placeholder}
                     size="10"
                     onClick={() => {

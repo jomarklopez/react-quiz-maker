@@ -34,11 +34,9 @@ class CreateQuizForm extends React.Component {
     renderQuestionList() {
         return this.props.questions.map(question => {
             return (
-                <div className="ui card card-item" key={question.questionId}>
-                    <div className="content">
-                        <AddQuestions questionId={question.questionId} />
-                        <AddOptions questionId={question.questionId} />
-                    </div>
+                <div className="content" key={question.questionId}>
+                    <AddQuestions questionId={question.questionId} />
+                    <AddOptions questionId={question.questionId} />
                 </div>
             )
         })
@@ -47,7 +45,7 @@ class CreateQuizForm extends React.Component {
     render() {
         return (
             <>
-                <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} autoComplete="off">
+                <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} >
                     <div className="ui form segment">
                         <Field
                             name="quizName"

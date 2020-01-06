@@ -1,4 +1,4 @@
-import { ADD_QUESTION, ADD_OPTION, REMOVE_OPTION } from '../actions/types';
+import { ADD_QUESTION } from '../actions/types';
 
 const initState = [
     {

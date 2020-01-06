@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             stackedCardsObj.style.marginBottom = addMargin;
         }
 
+        // Prepare the card out of view 
         for (i = items; i < maxElements; i++) {
             listElNodesObj[i].style.zIndex = 0;
             listElNodesObj[i].style.opacity = 0;
