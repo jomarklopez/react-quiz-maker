@@ -5,8 +5,11 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => (
 
     <Route
         {...rest}
-        render={props => (authed ? <Component {...props} /> : <Redirect to="/login" />
-        )}
+        render={props =>
+            ((authed || localStorage.getItem("token"))
+                ? <Component {...props} />
+                : <Redirect to="/login" />)
+        }
     />
 );
 

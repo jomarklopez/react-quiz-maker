@@ -24,9 +24,6 @@ class AddQuestions extends React.Component {
                     onClick={() => {
                         if (this.props.questionId === this.props.questions.length - 1) {
                             this.props.addQuestion();
-                            console.log(this.props.questionId);
-                            console.log(this.props.questions.length - 1);
-
                         }
                     }
                     }

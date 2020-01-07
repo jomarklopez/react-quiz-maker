@@ -27,7 +27,7 @@ class App extends React.Component {
                         <Route path="/" exact component={Home} />
                         <Route path="/login" exact component={Login} />
                         <Route path="/registration" exact component={Registration} />
-                        <Route path="/quizlist" exact component={QuizCreate} />
+                        <Route path="/quizlist" exact component={QuizList} />
                         <PrivateRoute path="/createquiz" exact component={QuizCreate} authed={this.props.currentUser} />
                     </div>
                 </Router>

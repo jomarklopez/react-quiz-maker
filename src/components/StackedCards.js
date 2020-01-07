@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+
 import '../styles/stackedCards.css';
 
 class StackedCards extends React.Component {
@@ -16,16 +17,23 @@ class StackedCards extends React.Component {
     }
 
     onClickLeft() {
-        // Rotation to left still not working.
-        /*  this.currentCard.current.style.transform = `translateX(" ${-1000} "px) translateY("${this.elTrans}"px) translateZ(0) rotate(" + rotateElement + "deg)`;
-         this.swipeLeftAnimate(-1000, 0, 0, this.currentCard.current); */
-        this.setState({ currentPosition: this.state.currentPosition + 1 });
+        if (this.state.currentPosition < this.maxElements - 1) {
+            this.swipeLeftAnimate(0, -1000, 0, this.currentCard.current);
+            setTimeout(() => {
+                this.setState({ currentPosition: this.state.currentPosition + 1 });
+            }, 300);
+        } else {
+            // For carousel effect, to go back to the first card
+            this.swipeLeftAnimate(0, -1000, 0, this.currentCard.current);
+            setTimeout(() => {
+                this.setState({ currentPosition: 0 });
+            }, 300);
+        }
     }
 
     swipeLeftAnimate(moveX, moveY, opacity, elementObj) {
         let element = elementObj;
         let rotateElement = RotateRegulator(moveX);
-        console.log(element);
 
         // Function to set rotate direction 
         function RotateRegulator(value) {
@@ -65,7 +73,6 @@ class StackedCards extends React.Component {
                 // Set the style for each cards in the view
                 const element = cards[i];
                 if (element) {
-                    //console.log(i + ' is less than ' + (this.currentPosition + this.items));
                     this.elTrans = elTransInc * elTransTop;
                     elTransTop--;
                     const clone = React.cloneElement(element, {
@@ -108,6 +115,8 @@ class StackedCards extends React.Component {
 
     }
 
+    // If there are no content then put a placeholder
+
     renderCards(contentList) {
         this.contentList = contentList;
         // Insert content to cards and put ref to currentCard
@@ -115,7 +124,7 @@ class StackedCards extends React.Component {
             if (Number(content.key) === this.state.currentPosition) {
                 return (
                     <div
-                        className="ui card card-item"
+                        className="card-item"
                         ref={this.currentCard}
                         key={content.key}
                     >
@@ -125,7 +134,7 @@ class StackedCards extends React.Component {
             } else {
                 return (
                     <div
-                        className="ui card card-item"
+                        className="card-item"
                         key={content.key}
                     >
                         {content}

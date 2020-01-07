@@ -1,24 +1,10 @@
 /* Stacked Cards component css */
-.no-transition {
-  -webkit-transition: none ! important;
-  -o-transition: none ! important;
-  transition: none ! important;
-}
-
 .stackedcards-overflow {
     overflow-y: hidden !important;
 }
 
-.stackedcards.init {
-    opacity: 1;/* set the opacity to 0 if you want a fade-in effect to stacked cards on page load */
-}
-
 .stackedcards {
     position: relative;
-}
-
-.card-item {
-    margin: 0!important;
 }
 
 .stackedcards-container {
@@ -27,48 +13,35 @@
     margin: 10px;
 }
 
-.stackedcards * {
-    -webkit-user-select: none;
-            -moz-user-select: none;
-             -ms-user-select: none;
-         user-select: none;
-}
-
 .stackedcards--animatable {
-    -webkit-transition: all 400ms ease;
-            -o-transition: all 400ms ease;
-            transition: all 400ms ease;
+    -webkit-transition: all 500ms ease;
+            -o-transition: all 500ms ease;
+            transition: all 500ms ease;
 }
 
 .stackedcards .stackedcards-container > *{
     position: absolute;
     justify-self: center;
-    min-width: 40vw; /* set 100% */
     will-change: transform, opacity;
-    
-    border-radius: 10px;
-}
-.stackedcards-origin-bottom {
-    -webkit-transform-origin: bottom;
-            -ms-transform-origin: bottom;
-        transform-origin: bottom;
-}
-
-.stackedcards-origin-top {
-    -webkit-transform-origin: top;
-            -ms-transform-origin: top;
-        transform-origin: top;
-}
-
-.stackedcards-bottom,
-.stackedcards-top,
-.stackedcards-none {
-    background: #fff; /* set card background background */
 }
 
 .stackedcards .stackedcards-container > :nth-child(1) {
     position: relative;
     display: block;
+}
+
+.card-item { 
+    display: flex;
+    margin: 0!important;
+    max-width: 40vw;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    background: #FFFFFF; 
+    border-radius: .28571429rem;
+    will-change: transform, opacity;
+}
+
+.card-item > * {
+    padding: 1em 1em;
 }
 
 /* global actions buttons*/
@@ -108,5 +81,3 @@
 .right-action { background: #7BB3C5; }
 .left-action { background: #E58D93; }
 
-/* elements on stacked cards */
-.card-item { background: #FFFFFF; }

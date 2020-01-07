@@ -16,17 +16,14 @@ class CreateQuizForm extends React.Component {
     }
 
     renderLabeledInput({ input, label, placeholder, meta: { touched, error } }) {
-        const className = `ui action labeled field input ${touched && error ? 'error' : ''}`
+        //const className = `ui labeled field input ${touched && error ? 'error' : ''}`
         return (
-            <div className={className}>
+            <div className="ui labeled field input">
                 <div className="ui label">
                     {label}
                 </div>
                 <input {...input} placeholder={placeholder}
                 />
-                <button type="button" className="ui green right icon button" onClick={() => console.log('Check name clicked')}>
-                    <i className="check icon"></i>
-                </button>
             </div>
         );
     }
