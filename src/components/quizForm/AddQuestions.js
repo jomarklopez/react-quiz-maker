@@ -1,10 +1,9 @@
 import React from 'react';
-import { Field } from 'redux-form';
+import { Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
-import { addQuestion } from '../../actions';
+import { addQuestionForm } from '../../actions';
 
-
-const required = value => (value || typeof value === 'number' ? undefined : 'Required');
+import AddOptions from './AddOptions';
 
 class AddQuestions extends React.Component {
 
@@ -22,8 +21,8 @@ class AddQuestions extends React.Component {
                     placeholder={placeholder}
                     size="10"
                     onClick={() => {
-                        if (this.props.questionId === this.props.questions.length - 1) {
-                            this.props.addQuestion();
+                        if (this.props.questionId === this.props.questionForms.length - 1) {
+                            this.props.addQuestionForm();
                         }
                     }
                     }
@@ -34,13 +33,17 @@ class AddQuestions extends React.Component {
 
     renderQuestions() {
         return (
-            <Field
-                name={`question-${this.props.questionId}`}
-                component={this.renderQuestionInput.bind(this)}
-                placeholder="Enter your question."
-                questionNumber={this.props.questionId}
-                validate={[required]}
-            />
+            <FormSection name={`${this.props.questionId}`}>
+                <Field
+                    name={`question`}
+                    component={this.renderQuestionInput.bind(this)}
+                    placeholder="Enter your question."
+                    questionNumber={this.props.questionId}
+                />
+                <FormSection name={`options`}>
+                    <AddOptions questionId={this.props.questionId} />
+                </FormSection>
+            </FormSection>
         )
     }
 
@@ -48,14 +51,16 @@ class AddQuestions extends React.Component {
         return (
             <>
                 <label>{`Question ${this.props.questionId + 1}:`}</label>
-                {this.renderQuestions()}
+                <FormSection name="questions">
+                    {this.renderQuestions()}
+                </FormSection>
             </>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return { questions: state.questions }
+    return { questionForms: state.questionForms }
 }
 
-export default connect(mapStateToProps, { addQuestion })(AddQuestions);
+export default connect(mapStateToProps, { addQuestionForm })(AddQuestions);

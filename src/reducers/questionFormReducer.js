@@ -1,4 +1,4 @@
-import { ADD_QUESTION } from '../actions/types';
+import { ADD_QUESTION, CLEAR_QUESTION } from '../actions/types';
 
 const initState = [
     {
@@ -13,6 +13,8 @@ export default (state = initState, action) => {
             return [...state, {
                 questionId: action.questionId
             }];
+        case CLEAR_QUESTION:
+            return initState;
         default:
             return state;
     }

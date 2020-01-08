@@ -2,17 +2,16 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 
-import AddOptions from './AddOptions';
 import AddQuestions from './AddQuestions';
-import { addQuestion } from '../../actions';
+import { addQuestionForm } from '../../actions';
 import StackedCards from '../StackedCards';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 
 class CreateQuizForm extends React.Component {
 
-    onSubmit(formValues) {
-        console.log(formValues);
+    onSubmit = formValues => {
+        this.props.onSubmit(formValues);
     }
 
     renderLabeledInput({ input, label, placeholder, meta: { touched, error } }) {
@@ -29,11 +28,10 @@ class CreateQuizForm extends React.Component {
     }
 
     renderQuestionList() {
-        return this.props.questions.map(question => {
+        return this.props.questionForms.map(questionForm => {
             return (
-                <div className="content" key={question.questionId}>
-                    <AddQuestions questionId={question.questionId} />
-                    <AddOptions questionId={question.questionId} />
+                <div className="content" key={questionForm.questionId}>
+                    <AddQuestions questionId={questionForm.questionId} />
                 </div>
             )
         })
@@ -58,11 +56,7 @@ class CreateQuizForm extends React.Component {
                             {this.renderQuestionList()}
                         </StackedCards>
                         <div className="extra content">
-                            <div className="ui two buttons">
-                                <button type="button" className="ui button teal" onClick={() => this.props.addQuestion()
-                                }>Add Another Question</button>
-                                <button type="submit" className="ui button primary right floated" style={{ float: "right" }}>Submit</button>
-                            </div>
+                            <button className="ui button primary">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -72,11 +66,11 @@ class CreateQuizForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { questions: state.questions }
+    return { questionForms: state.questionForms }
 }
 
 const form = reduxForm({
     form: 'quizForm'
 })(CreateQuizForm);
 
-export default connect(mapStateToProps, { addQuestion })(form);
+export default connect(mapStateToProps, { addQuestionForm })(form);

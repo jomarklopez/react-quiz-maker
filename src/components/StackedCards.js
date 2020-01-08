@@ -18,13 +18,13 @@ class StackedCards extends React.Component {
 
     onClickLeft() {
         if (this.state.currentPosition < this.maxElements - 1) {
-            this.swipeLeftAnimate(0, -1000, 0, this.currentCard.current);
+            this.swipeLeftAnimate(-500, 0, 0, this.currentCard.current);
             setTimeout(() => {
                 this.setState({ currentPosition: this.state.currentPosition + 1 });
             }, 300);
         } else {
             // For carousel effect, to go back to the first card
-            this.swipeLeftAnimate(0, -1000, 0, this.currentCard.current);
+            this.swipeLeftAnimate(-500, 0, 0, this.currentCard.current);
             setTimeout(() => {
                 this.setState({ currentPosition: 0 });
             }, 300);
@@ -155,7 +155,7 @@ class StackedCards extends React.Component {
                     </div>
                 </div>
                 <div className="global-actions">
-                    <button className="left-action" onClick={() => this.onClickLeft()
+                    <button type="button" className="left-action" onClick={() => this.onClickLeft()
                     }>Next Question</button>
                 </div>
             </>
