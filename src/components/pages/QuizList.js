@@ -10,7 +10,6 @@ class QuizList extends React.Component {
     }
 
     renderList() {
-        console.log(Object.keys(this.props.quizzes).length)
         if (Object.keys(this.props.quizzes).length !== 0) {
             return this.props.quizzes.map(quiz => {
                 return (

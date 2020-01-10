@@ -15,7 +15,8 @@ class AddQuestions extends React.Component {
         // const className = `field ${touched && error ? 'error' : ''}` For optional error handling
         return (
             <div className="field">
-                <input {...input}
+                <input
+                    {...input}
                     autoComplete="off"
                     ref={input => this[`question-${this.props.questionId}`] = input}
                     placeholder={placeholder}
