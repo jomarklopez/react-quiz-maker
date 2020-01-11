@@ -116,8 +116,13 @@ export const fetchQuizzes = () => async dispatch => {
 };
 
 export const fetchQuiz = id => async dispatch => {
-    const response = await quizzes.get(`/quiz/${id}`);
+    const token = localStorage.getItem('token');
 
+    const response = await quizzes.get(`/quiz/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     dispatch({ type: FETCH_QUIZ, payload: response.data });
 };
 
@@ -129,7 +134,13 @@ export const editQuiz = (id, formValues) => async dispatch => {
 };
 
 export const deleteQuiz = id => async dispatch => {
-    await quizzes.delete(`/quiz/${id}`);
+    const token = localStorage.getItem('token');
+
+    await quizzes.delete(`/quiz/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
 
     dispatch({ type: DELETE_QUIZ, payload: id });
     history.push('/quizlist');

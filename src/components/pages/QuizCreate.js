@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { createQuiz, clearQuestionForms } from '../../actions';
 import CreateManualQuizForm from '../manualQuizForm/CreateManualQuizForm';
@@ -84,7 +85,7 @@ class QuizCreate extends React.Component {
                     <div className="content">
                         <div className="header">
                             Manual
-                                </div>
+                         </div>
                         <div className="ui card">
                             <div className="content">
                                 <label>Question 1: </label>
@@ -153,9 +154,18 @@ class QuizCreate extends React.Component {
         )
     }
 
+    renderActions() {
+        return <Link to="/quizlist" className="ui button">Cancel</Link>;
+    }
+
     renderForm() {
         if (this.state.showModal) {
-            return <Modal title="Choose how you create your quiz!" content={this.renderModalContent()} onDismiss={() => history.push('/quizlist')} />;
+            return <Modal
+                title="Choose how you create your quiz!"
+                content={this.renderModalContent()}
+                actions={this.renderActions()}
+                onDismiss={() => history.push('/quizlist')}
+            />;
         } else if (this.state.showManualQuizForm) {
             return <CreateManualQuizForm onSubmit={this.onSubmit} />;
         } else if (this.state.showAutoQuizForm) {

@@ -22,7 +22,7 @@ class StackedCards extends React.Component {
             setTimeout(() => {
                 this.setState({ currentPosition: this.state.currentPosition + 1 });
             }, 300);
-        } else {
+        } else if (this.props.carousel === "true") {
             // For carousel effect, to go back to the first card
             this.swipeLeftAnimate(-500, 0, 0, this.currentCard.current);
             setTimeout(() => {
@@ -109,10 +109,6 @@ class StackedCards extends React.Component {
 
         }
         return clones;
-    }
-
-    componentDidMount() {
-
     }
 
     // If there are no content then put a placeholder

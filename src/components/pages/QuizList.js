@@ -4,27 +4,36 @@ import { Link } from 'react-router-dom';
 
 import { fetchQuizzes } from '../../actions';
 import '../../styles/quizList.css'
+import history from '../../history';
 
 class QuizList extends React.Component {
     componentDidMount() {
         this.props.fetchQuizzes();
     }
 
+    quizStart(id) {
+        history.push(`/quiz/start/${id}`)
+    }
+
     renderList() {
         if (Object.keys(this.props.quizzes).length !== 0) {
             return this.props.quizzes.map(quiz => {
                 return (
-                    <div className="setCard" key={quiz._id} onClick={() => console.log(quiz._id)}>
+                    <div className="setCard" key={quiz._id} onClick={() => this.quizStart(quiz._id)}>
                         <div className="ui simple icon bottom right floated dropdown button" onClick={(e) => e.stopPropagation()}>
                             <i className="ellipsis vertical icon"></i>
                             <div className="menu" >
                                 <div className="item">
-                                    <i className="edit outline icon"></i>
-                                    Edit
+                                    <Link to={`/quiz/edit/${quiz._id}`} className="">
+                                        <i className="edit outline icon"></i>
+                                        Edit
+                                    </Link>
                                 </div>
                                 <div className="item">
-                                    <i className="trash alternate outline icon"></i>
-                                    Delete
+                                    <Link to={`/quiz/delete/${quiz._id}`} className="trash alternate outline icon">
+                                        <i className="trash alternate icon"></i>
+                                        Delete
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +60,7 @@ class QuizList extends React.Component {
                 <h1>Select Quiz!</h1>
                 <div className="questSet-container">
                     {this.renderList()}
-                    <Link to="/createquiz" className="circular ui floated green icon button">
+                    <Link to="/quiz/create" className="circular ui green icon button">
                         {content}
                     </Link>
                 </div>
