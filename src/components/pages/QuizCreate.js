@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { createQuiz, clearQuestionForms } from '../../actions';
-import CreateQuizForm from '../quizForm/CreateQuizForm';
+import CreateManualQuizForm from '../manualQuizForm/CreateManualQuizForm';
 import CreateAutoQuizForm from '../autoQuizForm/CreateAutoQuizForm';
 import Modal from '../Modal';
 import history from '../../history';
@@ -17,12 +17,39 @@ class QuizCreate extends React.Component {
         }
     }
 
-    onSubmit = formValues => {
-        for (let index = 0; index < formValues.questions.length; index++) {
-            formValues.questions[index].answer = formValues.questions[index].options[0];
+    submitQuizBody(formValues) {
+        if (this.state.showManualQuizForm) {
+            for (let index = 0; index < formValues.questions.length; index++) {
+                formValues.questions[index].answer = formValues.questions[index].options[0];
+            }
+            this.props.createQuiz(formValues);
+            this.props.clearQuestionForms();
+        } else if (this.state.showAutoQuizForm) {
+            console.log(typeof formValues)
+
+            let questionsInput = removeEmptyLines(formValues.questionsForm.split(/\n/));
+            let answerKey = removeEmptyLines(formValues.answersForm.split(/\n/));
+            let choices = createChoices(answerKey);
+            let questions = [];
+
+            for (let index = 0; index < questionsInput.length; index++) {
+                let question = {
+                    question: questionsInput[index],
+                    answer: answerKey[index],
+                    options: choices[index]
+                };
+                questions.push(question);
+            }
+            let quiz = {
+                quizName: formValues.quizName,
+                questions: questions
+            }
+            this.props.createQuiz(quiz);
         }
-        this.props.createQuiz(formValues);
-        this.props.clearQuestionForms();
+    }
+
+    onSubmit = formValues => {
+        this.submitQuizBody(formValues);
     }
 
     renderModalContent() {
@@ -126,9 +153,9 @@ class QuizCreate extends React.Component {
         if (this.state.showModal) {
             return <Modal title="Choose how you create your quiz!" content={this.renderModalContent()} onDismiss={() => history.push('/quizlist')} />;
         } else if (this.state.showManualQuizForm) {
-            return <CreateQuizForm onSubmit={this.onSubmit} />;
+            return <CreateManualQuizForm onSubmit={this.onSubmit} />;
         } else if (this.state.showAutoQuizForm) {
-            return <CreateAutoQuizForm />
+            return <CreateAutoQuizForm onSubmit={this.onSubmit} />
         }
     }
 
@@ -140,5 +167,35 @@ class QuizCreate extends React.Component {
         )
     }
 };
+
+function removeEmptyLines(array) {
+    for (let index = 0; index < array.length;) {
+        const element = array[index];
+        if (element === "") {
+            array.splice(index, 1);
+        } else {
+            index++;
+        }
+    }
+    return array;
+}
+
+function createChoices(answerKey) {
+    const choices = [];
+    for (let index = 0; index < answerKey.length; index++) {
+        choices.push([...answerKey])
+    }
+    //Randomly remove elements until 3 are left except the right answer
+    for (var i = 0; i <= choices.length - 1; i++) {
+        let el = choices[i];
+        while (el.length !== 4) {
+            let curIndex = Math.floor(Math.random() * el.length)
+            if (el[curIndex] !== answerKey[i]) {
+                el.splice(curIndex, 1);
+            }
+        }
+    }
+    return choices;
+}
 
 export default connect(null, { createQuiz, clearQuestionForms })(QuizCreate);
