@@ -98,7 +98,6 @@ export const createQuiz = formValues => async dispatch => {
         }
     }
     );
-    console.log(response.data)
     dispatch({ type: CREATE_QUIZ, payload: response.data });
     //Do some programmatic navigation to automatically bring the user back to the list of streams
     history.push('/quizlist');
