@@ -127,7 +127,15 @@ export const fetchQuiz = id => async dispatch => {
 };
 
 export const editQuiz = (id, formValues) => async dispatch => {
-    const response = await quizzes.patch(`/quiz/${id}`, formValues);
+    const token = localStorage.getItem('token');
+
+    const response = await quizzes.patch(
+        `/quiz/${id}`,
+        formValues, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
 
     dispatch({ type: EDIT_QUIZ, payload: response.data });
     history.push('/quizlist');

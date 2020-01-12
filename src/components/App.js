@@ -11,6 +11,7 @@ import QuizList from './pages/QuizList';
 import QuizCreate from './pages/QuizCreate';
 import QuizStart from './pages/QuizStart';
 import QuizDelete from './pages/QuizDelete';
+import QuizEdit from './pages/QuizEdit';
 import { getUserProfile } from '../actions';
 
 import PrivateRoute from '../components/PrivateRoute';
@@ -33,7 +34,7 @@ class App extends React.Component {
                         <PrivateRoute path="/quiz/create" exact component={QuizCreate} authed={this.props.currentUser} />
                         <PrivateRoute path="/quiz/start/:quizId" exact component={QuizStart} authed={this.props.currentUser} />
                         <PrivateRoute path="/quiz/delete/:quizId" exact component={QuizDelete} authed={this.props.currentUser} />
-                        <PrivateRoute path="/quiz/edit/:quizId" exact component={QuizDelete} authed={this.props.currentUser} />
+                        <PrivateRoute path="/quiz/edit/:quizId" exact component={QuizEdit} authed={this.props.currentUser} />
                     </div>
                 </Router>
             </>

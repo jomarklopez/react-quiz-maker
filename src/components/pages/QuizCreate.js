@@ -158,6 +158,12 @@ class QuizCreate extends React.Component {
         return <Link to="/quizlist" className="ui button">Cancel</Link>;
     }
 
+    renderFormActions() {
+        return <button type="submit" className="ui primary button">
+            Submit
+                </button>;
+    }
+
     renderForm() {
         if (this.state.showModal) {
             return <Modal
@@ -167,9 +173,9 @@ class QuizCreate extends React.Component {
                 onDismiss={() => history.push('/quizlist')}
             />;
         } else if (this.state.showManualQuizForm) {
-            return <CreateManualQuizForm onSubmit={this.onSubmit} />;
+            return <CreateManualQuizForm actions={this.renderFormActions()} onSubmit={this.onSubmit} />;
         } else if (this.state.showAutoQuizForm) {
-            return <CreateAutoQuizForm onSubmit={this.onSubmit} />
+            return <CreateAutoQuizForm onSubmit={this.onSubmit} />;
         }
     }
 

@@ -23,18 +23,14 @@ class QuizList extends React.Component {
                         <div className="ui simple icon bottom right floated dropdown button" onClick={(e) => e.stopPropagation()}>
                             <i className="ellipsis vertical icon"></i>
                             <div className="menu" >
-                                <div className="item">
-                                    <Link to={`/quiz/edit/${quiz._id}`} className="">
-                                        <i className="edit outline icon"></i>
-                                        Edit
+                                <Link to={`/quiz/edit/${quiz._id}`} className="item">
+                                    <i className="edit icon"></i>
+                                    Edit
                                     </Link>
-                                </div>
-                                <div className="item">
-                                    <Link to={`/quiz/delete/${quiz._id}`} className="trash alternate outline icon">
-                                        <i className="trash alternate icon"></i>
-                                        Delete
+                                <Link to={`/quiz/delete/${quiz._id}`} className="item">
+                                    <i className="trash alternate icon"></i>
+                                    Delete
                                     </Link>
-                                </div>
                             </div>
                         </div>
                         <h3 className="setCard_title noselect" id={quiz.quizName} >{quiz.quizName} </h3>
