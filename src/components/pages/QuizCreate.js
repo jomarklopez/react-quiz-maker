@@ -18,13 +18,16 @@ class QuizCreate extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.clearQuestionForms();
+    }
+
     submitQuizBody(formValues) {
         if (this.state.showManualQuizForm) {
             for (let index = 0; index < formValues.questions.length; index++) {
                 formValues.questions[index].answer = formValues.questions[index].options[0];
             }
             this.props.createQuiz(formValues);
-            this.props.clearQuestionForms();
         } else if (this.state.showAutoQuizForm) {
             console.log(typeof formValues)
 
@@ -159,9 +162,15 @@ class QuizCreate extends React.Component {
     }
 
     renderFormActions() {
-        return <button type="submit" className="ui primary button">
-            Submit
-                </button>;
+        return (
+            <div className="ui right floated buttons">
+                <button type="submit" className="ui green button">Submit</button>
+                <div className="or"></div>
+                <Link to="/quizlist" className="ui button">
+                    Cancel
+                </Link>
+            </div>
+        );
     }
 
     renderForm() {

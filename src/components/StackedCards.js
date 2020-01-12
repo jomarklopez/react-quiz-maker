@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import Pagination from './Pagination';
 import '../styles/stackedCards.css';
 
 class StackedCards extends React.Component {
@@ -31,6 +32,12 @@ class StackedCards extends React.Component {
         }
     }
 
+    onClickRight() {
+        if (this.state.currentPosition !== 0) {
+            this.setState({ currentPosition: this.state.currentPosition - 1 });
+        }
+    }
+
     swipeLeftAnimate(moveX, moveY, opacity, elementObj) {
         let element = elementObj;
         let rotateElement = RotateRegulator(moveX);
@@ -52,7 +59,7 @@ class StackedCards extends React.Component {
             element.style.transform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";
             element.style.opacity = opacity;
         }
-    };
+    }
 
     renderCardStackStyle(cards) {
 
@@ -142,17 +149,37 @@ class StackedCards extends React.Component {
         return this.renderCardStackStyle(cards);
     }
 
+    // PAGINATION CONTROLS
+    actions(action) {
+
+        switch (action) {
+            case 'first':
+                this.setState({ currentPosition: 0 });
+                break;
+            case 'last':
+                this.setState({ currentPosition: this.maxElements - 1 });
+                break;
+            case 'forward':
+                this.onClickLeft();
+                break;
+            case 'backward':
+                this.onClickRight();
+                break;
+            default:
+                break;
+        }
+    }
+
     render() {
         return (
             <>
+                <div className="ui center aligned container">
+                    <Pagination actions={this.actions.bind(this)} numOfItems={this.maxElements} />
+                </div>
                 <div id="stacked-cards-block" className="content stackedcards stackedcards--animatable init">
                     <div className="stackedcards-container">
                         {this.renderCards(this.props.children)}
                     </div>
-                </div>
-                <div className="global-actions">
-                    <button type="button" className="left-action" onClick={() => this.onClickLeft()
-                    }>Next Question</button>
                 </div>
             </>
         )
