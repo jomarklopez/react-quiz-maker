@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import Pagination from './Pagination';
 import '../styles/stackedCards.css';
@@ -118,8 +119,6 @@ class StackedCards extends React.Component {
         return clones;
     }
 
-    // If there are no content then put a placeholder
-
     renderCards(contentList) {
         this.contentList = contentList;
         // Insert content to cards and put ref to currentCard
@@ -149,9 +148,42 @@ class StackedCards extends React.Component {
         return this.renderCardStackStyle(cards);
     }
 
-    // PAGINATION CONTROLS
-    actions(action) {
+    // Determine where to display the action buttons 
+    renderActionButtons(action) {
+        if (action === "true") {
+            return (
+                <div className="ui clearing segment">
+                    <div className="ui right floated animated green button" tabIndex="0" onClick={() => this.onClickLeft()}>
+                        <div className="visible content">Next Question</div>
+                        <div className="hidden content">
+                            <i className="right arrow icon"></i>
+                        </div>
+                    </div>
+                    <Link to="/quizlist" className="ui left floated red button">
+                        Back to Quiz List
+                    </Link>
+                </div>
+            )
+        } else {
+            return null;
+        }
+    }
 
+    // Determine whether to display pagination
+    renderPagination(pagination) {
+        if (pagination === "true") {
+            return (
+                <div className="ui center aligned container">
+                    <Pagination actions={this.actions.bind(this)} numOfItems={this.maxElements} />
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    // Actions for navigation
+    actions(action) {
         switch (action) {
             case 'first':
                 this.setState({ currentPosition: 0 });
@@ -173,13 +205,14 @@ class StackedCards extends React.Component {
     render() {
         return (
             <>
-                <div className="ui center aligned container">
-                    <Pagination actions={this.actions.bind(this)} numOfItems={this.maxElements} />
-                </div>
+                {this.renderPagination(this.props.pagination)}
                 <div id="stacked-cards-block" className="content stackedcards stackedcards--animatable init">
                     <div className="stackedcards-container">
                         {this.renderCards(this.props.children)}
                     </div>
+                </div>
+                <div className="">
+                    {this.renderActionButtons(this.props.actions)}
                 </div>
             </>
         )

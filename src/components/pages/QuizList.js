@@ -52,7 +52,7 @@ class QuizList extends React.Component {
     render() {
         const content = (Object.keys(this.props.quizzes).length === 0) ? 'Create A Quiz' : <i className="plus icon"></i>;
         return (
-            <div className="ui segment">
+            <div className="ui container segment">
                 <h1>Select Quiz!</h1>
                 <div className="questSet-container">
                     {this.renderList()}

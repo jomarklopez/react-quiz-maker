@@ -25,7 +25,7 @@ class App extends React.Component {
         return (
             <>
                 <Router history={history}>
-                    <div className="ui container">
+                    <div className="">
                         <Menu />
                         <Route path="/" exact component={Home} />
                         <Route path="/login" exact component={Login} />

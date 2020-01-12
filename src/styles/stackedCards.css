@@ -10,7 +10,7 @@
 .stackedcards-container {
     display: flex;
     justify-content: center;
-    margin: 10px;
+    margin-bottom: 50px;
 }
 
 .stackedcards--animatable {
@@ -32,8 +32,8 @@
 
 .card-item { 
     display: flex;
+    max-width: 320px;
     margin: 0!important;
-    max-width: 40vw;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
     background: #FFFFFF; 
     border-radius: .28571429rem;
@@ -44,40 +44,14 @@
     padding: 1em 1em;
 }
 
-/* global actions buttons*/
-.global-actions {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    width: 100%;
-    margin-top: 10px;
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+
+  .card-item {
+      min-width: 500px;
+  }
+
+  .card-item .content {
+      min-width: inherit;
+  }
 }
-
-.top-action,
-.right-action,
-.left-action {
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #fff;
-}
-
-.top-action {
-    background: #E38568;
-    margin: 0 10px; 
-}
-
-.right-action { background: #7BB3C5; }
-.left-action { background: #E58D93; }
-
