@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 
 import { fetchQuiz } from '../../actions';
 import StackedCards from '../StackedCards';
+import '../../styles/quizStart.css';
 
 class QuizStart extends React.Component {
     // TODO: Implement the actual checking of answers thru backend api. 
@@ -25,9 +26,9 @@ class QuizStart extends React.Component {
         console.log(formValues);
     }
 
-    renderRadioInput({ input, type }) {
+    renderRadioInput({ input, id, name, type }) {
         return (
-            <input {...input} type={type} />
+            <input {...input} id={id} name={name} type={type} />
         );
     }
 
@@ -37,26 +38,32 @@ class QuizStart extends React.Component {
                 <div className="content" key={index}>
                     <label>Question {index + 1}: </label>
                     <h3>{question.question}</h3>
-                    <div className="ui internally celled grid">
-                        <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} >
-                            <label>Options:</label>
-                            <div>
-                                <label>
-                                    <Field name={question.question} component={this.renderRadioInput} type="radio" value={question.options[0]} /> {question.options[0]}
-                                </label>
-                                <label>
-                                    <Field name={question.question} component={this.renderRadioInput} type="radio" value={question.options[1]} /> {question.options[1]}
-                                </label>
-                                <label>
-                                    <Field name={question.question} component={this.renderRadioInput} type="radio" value={question.options[2]} /> {question.options[2]}
-                                </label>
-                                <label>
-                                    <Field name={question.question} component={this.renderRadioInput} type="radio" value={question.options[3]} /> {question.options[3]}
-                                </label>
+                    <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} >
+                        <label>Options:</label>
+                        <div className="ui internally celled center aligned grid">
+                            <div className="row">
+                                <div className="ui eight wide column">
+                                    <Field id={`${question._id}-0-${question.options[0]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[0]} />
+                                    <label htmlFor={`${question._id}-0-${question.options[0]}`}> {question.options[0]} </label>
+                                </div>
+                                <div className="eight wide column">
+                                    <Field id={`${question._id}-1-${question.options[1]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[1]} />
+                                    <label htmlFor={`${question._id}-1-${question.options[1]}`}>{question.options[1]}</label>
+                                </div>
                             </div>
-                            <button className="ui button">Submit</button>
-                        </form>
-                    </div>
+                            <div className="row">
+                                <div className="eight wide column">
+                                    <Field id={`${question._id}-2-${question.options[2]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[2]} />
+                                    <label htmlFor={`${question._id}-2-${question.options[2]}`}>{question.options[2]}</label>
+                                </div>
+                                <div className="eight wide column">
+                                    <Field id={`${question._id}-3-${question.options[3]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[3]} />
+                                    <label htmlFor={`${question._id}-3-${question.options[3]}`}> {question.options[3]}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button className="ui button">Submit</button>
+                    </form>
                 </div>
             )
         })

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { fetchQuiz, editQuiz, clearQuestionForms } from '../../actions';
+import { fetchQuiz, editQuiz } from '../../actions';
 import CreateManualQuizForm from '../manualQuizForm/CreateManualQuizForm';
 
 class QuizEdit extends React.Component {
@@ -22,6 +22,7 @@ class QuizEdit extends React.Component {
     onSubmit = formValues => {
         this.submitQuizBody(formValues);
     }
+
     renderFormActions() {
         return (
             <div className="ui right floated buttons">
@@ -53,4 +54,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, { fetchQuiz, editQuiz, clearQuestionForms })(QuizEdit);
+export default connect(mapStateToProps, { fetchQuiz, editQuiz })(QuizEdit);

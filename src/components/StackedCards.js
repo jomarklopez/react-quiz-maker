@@ -20,13 +20,13 @@ class StackedCards extends React.Component {
 
     onClickLeft() {
         if (this.state.currentPosition < this.maxElements - 1) {
-            this.swipeLeftAnimate(-500, 0, 0, this.currentCard.current);
+            this.swipeLeftAnimate(-1000, 0, 0, this.currentCard.current);
             setTimeout(() => {
                 this.setState({ currentPosition: this.state.currentPosition + 1 });
             }, 300);
         } else if (this.props.carousel === "true") {
             // For carousel effect, to go back to the first card
-            this.swipeLeftAnimate(-500, 0, 0, this.currentCard.current);
+            this.swipeLeftAnimate(-1000, 0, 0, this.currentCard.current);
             setTimeout(() => {
                 this.setState({ currentPosition: 0 });
             }, 300);
@@ -58,7 +58,6 @@ class StackedCards extends React.Component {
         if (element) {
             element.style.WebkitTransform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";
             element.style.transform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";
-            element.style.opacity = opacity;
         }
     }
 
@@ -68,7 +67,6 @@ class StackedCards extends React.Component {
         this.maxElements = cards.length;
         let elZindex = 5;
         let elScale = 1;
-        let elOpac = 1;
         let elTransTop = this.items;
         let elTransInc = this.elementsMargin;
         let addedClass = 'stackedcards-top stackedcards--animatable stackedcards-origin-top';
@@ -88,12 +86,10 @@ class StackedCards extends React.Component {
                         style: {
                             transform: `scale(${elScale}) translateX(0px) translateY(${this.elTrans - elTransInc}px) translateZ(0px)`,
                             WebkitTransform: `scale(${elScale}) translateX(0px) translateY(${this.elTrans - elTransInc}px) translateZ(0px)`,
-                            opacity: elOpac,
                             zIndex: elZindex
                         }
                     });
                     elScale = elScale - 0.04;
-                    elOpac = elOpac - (1 / this.items);
                     elZindex--;
                     clones.push(clone);
                 }
@@ -107,7 +103,7 @@ class StackedCards extends React.Component {
                         style: {
                             transform: `scale(${1 - (this.items * 0.04)}) translateX(0px) translateY(${elTrans}px) translateZ(0px)`,
                             WebkitTransform: `scale(${1 - (this.items * 0.04)}) translateX(0px) translateY(${elTrans}px) translateZ(0px)`,
-                            opacity: 0,
+                            opacity: 1,
                             zIndex: 0
                         }
                     });
@@ -199,6 +195,10 @@ class StackedCards extends React.Component {
                 break;
             default:
                 break;
+        }
+
+        if (typeof action === 'number') {
+            this.setState({ currentPosition: action });
         }
     }
 

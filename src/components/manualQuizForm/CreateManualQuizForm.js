@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 
 import AddQuestions from './AddQuestions';
-import { addQuestionForm } from '../../actions';
+import { addQuestionForm, clearQuestionForms } from '../../actions';
 import StackedCards from '../StackedCards';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -15,6 +15,7 @@ class CreateManualQuizForm extends React.Component {
     }
 
     componentDidMount() {
+        this.props.clearQuestionForms();
         for (let index = 0; index < this.props.quizLength - 1; index++) {
             this.props.addQuestionForm();
         }
@@ -90,4 +91,4 @@ const form = reduxForm({
     form: 'manualQuizForm'
 })(CreateManualQuizForm);
 
-export default connect(mapStateToProps, { addQuestionForm })(form);
+export default connect(mapStateToProps, { addQuestionForm, clearQuestionForms })(form);
