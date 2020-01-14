@@ -9,7 +9,6 @@ class StackedCards extends React.Component {
     constructor(props) {
         super(props);
         this.contentList = [];
-        this.currentPosition = 0;
         this.items = 3;
         this.elementsMargin = 10;
         this.currentCard = React.createRef();
@@ -147,19 +146,29 @@ class StackedCards extends React.Component {
     // Determine where to display the action buttons 
     renderActionButtons(action) {
         if (action === "true") {
-            return (
-                <div className="ui clearing segment">
-                    <div className="ui right floated animated green button" tabIndex="0" onClick={() => this.onClickLeft()}>
-                        <div className="visible content">Next Question</div>
-                        <div className="hidden content">
-                            <i className="right arrow icon"></i>
+            if (this.state.currentPosition === this.maxElements - 1) {
+                return (
+                    <div className="ui clearing segment">
+                        <div className="ui right floated green button" tabIndex="0" onClick={() => this.props.onSubmit()}>
+                            <div className="visible content">Finish Quiz</div>
                         </div>
                     </div>
-                    <Link to="/quizlist" className="ui left floated red button">
-                        Back to Quiz List
+                )
+            } else {
+                return (
+                    <div className="ui clearing segment">
+                        <div className="ui right floated animated green button" tabIndex="0" onClick={() => this.onClickLeft()}>
+                            <div className="visible content">Next Question</div>
+                            <div className="hidden content">
+                                <i className="right arrow icon"></i>
+                            </div>
+                        </div>
+                        <Link to="/quizlist" className="ui left floated red button">
+                            Back to Quiz List
                     </Link>
-                </div>
-            )
+                    </div>
+                )
+            }
         } else {
             return null;
         }

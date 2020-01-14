@@ -38,31 +38,53 @@ class QuizStart extends React.Component {
                 <div className="content" key={index}>
                     <label>Question {index + 1}: </label>
                     <h3>{question.question}</h3>
-                    <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} >
+                    <form className="ui form">
                         <label>Options:</label>
                         <div className="ui internally celled center aligned grid">
                             <div className="row">
-                                <div className="ui eight wide column">
-                                    <Field id={`${question._id}-0-${question.options[0]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[0]} />
-                                    <label htmlFor={`${question._id}-0-${question.options[0]}`}> {question.options[0]} </label>
+                                <div className="eight wide column option-container">
+                                    <Field
+                                        id={`${question._id}-0-${question.options[0]}`}
+                                        type="radio"
+                                        name={question.question}
+                                        component={this.renderRadioInput}
+                                        value={question.options[0]}
+                                    />
+                                    <label htmlFor={`${question._id}-0-${question.options[0]}`}> {question.options[0]}
+                                    </label>
                                 </div>
-                                <div className="eight wide column">
-                                    <Field id={`${question._id}-1-${question.options[1]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[1]} />
-                                    <label htmlFor={`${question._id}-1-${question.options[1]}`}>{question.options[1]}</label>
+                                <div className="eight wide column option-container">
+                                    <Field
+                                        id={`${question._id}-1-${question.options[1]}`}
+                                        type="radio"
+                                        name={question.question}
+                                        component={this.renderRadioInput}
+                                        value={question.options[1]}
+                                    />
+                                    <label htmlFor={`${question._id}-1-${question.options[1]}`}>{question.options[1]}
+                                    </label>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="eight wide column">
-                                    <Field id={`${question._id}-2-${question.options[2]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[2]} />
-                                    <label htmlFor={`${question._id}-2-${question.options[2]}`}>{question.options[2]}</label>
+                                <div className="eight wide column option-container">
+                                    <Field
+                                        id={`${question._id}-2-${question.options[2]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[2]} />
+                                    <label htmlFor={`${question._id}-2-${question.options[2]}`}>{question.options[2]}
+                                    </label>
                                 </div>
-                                <div className="eight wide column">
-                                    <Field id={`${question._id}-3-${question.options[3]}`} type="radio" name={question.question} component={this.renderRadioInput} value={question.options[3]} />
-                                    <label htmlFor={`${question._id}-3-${question.options[3]}`}> {question.options[3]}</label>
+                                <div className="eight wide column option-container">
+                                    <Field
+                                        id={`${question._id}-3-${question.options[3]}`}
+                                        type="radio"
+                                        name={question.question}
+                                        component={this.renderRadioInput}
+                                        value={question.options[3]}
+                                    />
+                                    <label htmlFor={`${question._id}-3-${question.options[3]}`}> {question.options[3]}
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <button className="ui button">Submit</button>
                     </form>
                 </div>
             )
@@ -82,10 +104,12 @@ class QuizStart extends React.Component {
                     <h1>{quizName}</h1>
                 </div>
                 <div className="ui container segment">
-                    <StackedCards actions="true" pagination="false" carousel="false">
+                    <StackedCards onSubmit={this.props.handleSubmit(this.onSubmit)} actions="true" pagination="false" carousel="false">
                         {this.renderQuestionList()}
                     </StackedCards>
                 </div>
+
+                <button type="submit" className="ui button">Finish!</button>
             </>
         );
     }

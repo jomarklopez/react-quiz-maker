@@ -28,7 +28,10 @@ class CreateManualQuizForm extends React.Component {
                 <div className="ui label">
                     {label}
                 </div>
-                <input {...input} placeholder={placeholder}
+                <input
+                    {...input}
+                    placeholder={placeholder}
+                    size="30"
                 />
             </div>
         );

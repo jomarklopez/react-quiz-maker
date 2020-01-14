@@ -11,15 +11,22 @@ input[type="radio"]:disabled ~ label {
   cursor: not-allowed;
 }
 
-.column {
+label {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.option-container {
   transition: all 50ms ease;
 }
 
-.column:active {
+.option-container:active {
   transform: translateY(5px);
 }
 
-.column label {
+.option-container label {
   height: 100%;
   display: block;
   background: white;
