@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import history from '../history';
 import Menu from './Menu';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import QuizList from './pages/QuizList';
@@ -25,17 +24,14 @@ class App extends React.Component {
         return (
             <>
                 <Router history={history}>
-                    <div className="">
-                        <Menu />
-                        <Route path="/" exact component={Home} />
-                        <Route path="/login" exact component={Login} />
-                        <Route path="/registration" exact component={Registration} />
-                        <PrivateRoute path="/quizlist" exact component={QuizList} authed={this.props.currentUser} />
-                        <PrivateRoute path="/quiz/create" exact component={QuizCreate} authed={this.props.currentUser} />
-                        <PrivateRoute path="/quiz/start/:quizId" exact component={QuizStart} authed={this.props.currentUser} />
-                        <PrivateRoute path="/quiz/delete/:quizId" exact component={QuizDelete} authed={this.props.currentUser} />
-                        <PrivateRoute path="/quiz/edit/:quizId" exact component={QuizEdit} authed={this.props.currentUser} />
-                    </div>
+                    <Menu />
+                    <PrivateRoute path="/" exact component={QuizList} authed={this.props.currentUser} />
+                    <Route path="/login" exact component={Login} />
+                    <Route path="/registration" exact component={Registration} />
+                    <PrivateRoute path="/quiz/create" exact component={QuizCreate} authed={this.props.currentUser} />
+                    <PrivateRoute path="/quiz/start/:quizId" exact component={QuizStart} authed={this.props.currentUser} />
+                    <PrivateRoute path="/quiz/delete/:quizId" exact component={QuizDelete} authed={this.props.currentUser} />
+                    <PrivateRoute path="/quiz/edit/:quizId" exact component={QuizEdit} authed={this.props.currentUser} />
                 </Router>
             </>
         )

@@ -165,7 +165,7 @@ class StackedCards extends React.Component {
                         </div>
                         <Link to="/quizlist" className="ui left floated red button">
                             Back to Quiz List
-                    </Link>
+                        </Link>
                     </div>
                 )
             }

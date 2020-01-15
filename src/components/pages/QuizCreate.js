@@ -158,7 +158,7 @@ class QuizCreate extends React.Component {
     }
 
     renderActions() {
-        return <Link to="/quizlist" className="ui button">Cancel</Link>;
+        return <Link to="/" className="ui button">Cancel</Link>;
     }
 
     renderFormActions() {

@@ -10,7 +10,6 @@ class Menu extends React.Component {
             <div className="ui inverted menu" >
                 <div className="ui container">
                     <Link to="/" className="header item">Quiz Generator</Link>
-                    <Link to="/quizlist" className="item">Quiz List</Link>
                     <AuthMenu />
                 </div>
             </div>

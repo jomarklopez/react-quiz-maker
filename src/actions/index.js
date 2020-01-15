@@ -100,7 +100,7 @@ export const createQuiz = formValues => async dispatch => {
     );
     dispatch({ type: CREATE_QUIZ, payload: response.data });
     //Do some programmatic navigation to automatically bring the user back to the list of streams
-    history.push('/quizlist');
+    history.push('/');
 };
 
 export const fetchQuizzes = () => async dispatch => {
@@ -138,7 +138,7 @@ export const editQuiz = (id, formValues) => async dispatch => {
     });
 
     dispatch({ type: EDIT_QUIZ, payload: response.data });
-    history.push('/quizlist');
+    history.push('/');
 };
 
 export const deleteQuiz = id => async dispatch => {
@@ -151,5 +151,5 @@ export const deleteQuiz = id => async dispatch => {
     });
 
     dispatch({ type: DELETE_QUIZ, payload: id });
-    history.push('/quizlist');
+    history.push('/');
 };

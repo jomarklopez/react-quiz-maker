@@ -22,9 +22,6 @@ class Login extends React.Component {
                     </div>
                     </h2>
                     <LoginForm onSubmit={this.onSubmit} />
-                    <div className="ui container message">
-                        New User? <Link to="/registration">Sign Up</Link>
-                    </div>
                 </div>
             </div >
         );
