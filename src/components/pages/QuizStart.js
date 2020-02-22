@@ -3,16 +3,12 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-import { fetchQuiz } from '../../actions';
+import { fetchShuffledQuiz } from '../../actions';
 import EndScreen from '../EndScreen';
 import StackedCards from '../StackedCards';
 import '../../styles/quizStart.css';
 
 class QuizStart extends React.Component {
-    // TODO: Implement the actual checking of answers thru backend api. 
-    // 1. Collect user answers
-    // 2. Send request to api with user answers to check
-    // 3. Send response to client with the total score and the which ones were right or wrong. 
 
     constructor(props) {
         super(props);
@@ -24,7 +20,7 @@ class QuizStart extends React.Component {
 
     componentDidMount() {
         const { quizId } = this.props.match.params;
-        this.props.fetchQuiz(quizId);
+        this.props.fetchShuffledQuiz(quizId);
     }
 
     onSubmit = formValues => {
@@ -111,7 +107,7 @@ class QuizStart extends React.Component {
     }
 
     renderEndScreenAction() {
-        return <Link to="/quizlist" className="ui button">
+        return <Link to="/" className="ui button">
             Back to Quiz List
                     </Link>
     }
@@ -141,8 +137,7 @@ class QuizStart extends React.Component {
             return (
                 <div className="ui container segment">
                     <EndScreen
-                        content={`QUIZ FINISHED
-                    YOUR SCORE IS ${this.userScore} OUT OF ${this.props.quiz.questions.length}`}
+                        content={`QUIZ FINISHED YOUR SCORE IS ${this.userScore} OUT OF ${this.props.quiz.questions.length}`}
                         actions={this.renderEndScreenAction()}
                     />
                 </div>
@@ -161,4 +156,4 @@ const form = reduxForm({
     form: 'userAnswers'
 })(QuizStart);
 
-export default connect(mapStateToProps, { fetchQuiz })(form);
+export default connect(mapStateToProps, { fetchShuffledQuiz })(form);

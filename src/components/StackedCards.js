@@ -163,7 +163,7 @@ class StackedCards extends React.Component {
                                 <i className="right arrow icon"></i>
                             </div>
                         </div>
-                        <Link to="/quizlist" className="ui left floated red button">
+                        <Link to="/" className="ui left floated red button">
                             Back to Quiz List
                         </Link>
                     </div>
@@ -220,9 +220,7 @@ class StackedCards extends React.Component {
                         {this.renderCards(this.props.children)}
                     </div>
                 </div>
-                <div className="">
-                    {this.renderActionButtons(this.props.actions)}
-                </div>
+                {this.renderActionButtons(this.props.actions)}
             </>
         )
     }

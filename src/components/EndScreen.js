@@ -2,11 +2,11 @@ import React from 'react';
 
 const EndScreen = (props) => {
     return (
-        <div class="ui centered raised card">
-            <div class="content">
+        <div className="ui centered raised card">
+            <div className="content">
                 {props.content}
             </div>
-            <div class="extra content">
+            <div className="extra content">
                 {props.actions}
             </div>
         </div>

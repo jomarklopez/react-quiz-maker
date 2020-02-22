@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { signInUser } from '../../actions';
@@ -19,7 +18,7 @@ class Login extends React.Component {
                     <h2 className="ui container centered teal header">
                         <div className="content">
                             Log-in to your account
-                    </div>
+                        </div>
                     </h2>
                     <LoginForm onSubmit={this.onSubmit} />
                 </div>

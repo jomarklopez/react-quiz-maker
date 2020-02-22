@@ -53,6 +53,7 @@ class QuizCreate extends React.Component {
     }
 
     onSubmit = formValues => {
+        console.log(formValues)
         this.submitQuizBody(formValues);
     }
 
@@ -166,7 +167,7 @@ class QuizCreate extends React.Component {
             <div className="ui right floated buttons">
                 <button type="submit" className="ui green button">Submit</button>
                 <div className="or"></div>
-                <Link to="/quizlist" className="ui button">
+                <Link to="/" className="ui button">
                     Cancel
                 </Link>
             </div>
@@ -189,6 +190,7 @@ class QuizCreate extends React.Component {
     }
 
     render() {
+        console.log('RENDER')
         return (
             <>
                 {this.renderForm()}

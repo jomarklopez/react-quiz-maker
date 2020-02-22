@@ -4,6 +4,7 @@ input[type="radio"] {
 input[type="radio"]:not(:disabled) ~ label {
   cursor: pointer;
 }
+
 input[type="radio"]:disabled ~ label {
   color: #bcc2bf;
   border-color: #bcc2bf;

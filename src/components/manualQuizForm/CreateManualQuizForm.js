@@ -48,7 +48,6 @@ class CreateManualQuizForm extends React.Component {
     }
 
     render() {
-
         return (
             <form className="ui form" onSubmit={this.props.handleSubmit(this.onSubmit)} >
                 <div className="ui form segment">

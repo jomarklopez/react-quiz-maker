@@ -7,6 +7,7 @@ import {
     CREATE_QUIZ,
     FETCH_QUIZZES,
     FETCH_QUIZ,
+    FETCH_SHUFFLED_QUIZ,
     EDIT_QUIZ,
     DELETE_QUIZ,
     CLEAR_QUESTION
@@ -32,7 +33,7 @@ export const signInUser = formValues => async dispatch => {
     localStorage.setItem('user', response.data.user)
     localStorage.setItem('token', response.data.token);
     dispatch({ type: SIGN_IN, payload: response.data.user });
-    history.push('/quizlist');
+    history.push('/');
 };
 
 export const signOutUser = () => async dispatch => {
@@ -124,6 +125,17 @@ export const fetchQuiz = id => async dispatch => {
         }
     });
     dispatch({ type: FETCH_QUIZ, payload: response.data });
+};
+
+export const fetchShuffledQuiz = id => async dispatch => {
+    const token = localStorage.getItem('token');
+
+    const response = await quizzes.get(`/quiz/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    dispatch({ type: FETCH_SHUFFLED_QUIZ, payload: response.data });
 };
 
 export const editQuiz = (id, formValues) => async dispatch => {

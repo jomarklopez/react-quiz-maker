@@ -1,10 +1,12 @@
 import _ from 'lodash';
+import { shuffleArray } from '../helpers/shuffleArray';
 import {
     CREATE_QUIZ,
     FETCH_QUIZZES,
     FETCH_QUIZ,
     EDIT_QUIZ,
-    DELETE_QUIZ
+    DELETE_QUIZ,
+    FETCH_SHUFFLED_QUIZ
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -12,6 +14,11 @@ export default (state = {}, action) => {
         case CREATE_QUIZ:
             return { ...state, [action.payload._id]: action.payload }
         case FETCH_QUIZ:
+            return { ...state, [action.payload._id]: action.payload }
+        case FETCH_SHUFFLED_QUIZ:
+            for (const question of action.payload.questions) {
+                shuffleArray(question.options);
+            }
             return { ...state, [action.payload._id]: action.payload }
         case FETCH_QUIZZES:
             //Getting a list of many records

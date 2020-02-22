@@ -8,6 +8,7 @@ class CreateAutoQuizForm extends React.Component {
 
     onSubmit = formValues => {
         // Arrange the form values
+
         this.props.onSubmit(formValues);
     }
 
